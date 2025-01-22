@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester Degree Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .class {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .class:last-child {
+            border-bottom: none;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        input {
+            width: 70px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        @media (max-width: 600px) {
+            input {
+                width: 50px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Semester Degree Calculator</h1>
+    <div class="container">
+        <form id="calculator">
+            <!-- Class Inputs -->
+            <div class="class">
+                <label>IFD ( 3)</label>
+                TP: <input type="number" id="ifd-tp" min="0" max="20" step="0.1">
+                Exam: <input type="number" id="ifd-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>SD ( 3)</label>
+                TD: <input type="number" id="sd-td" min="0" max="20" step="0.1">
+                TP: <input type="number" id="sd-tp" min="0" max="20" step="0.1">
+                Exam: <input type="number" id="sd-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>RC ( 3)</label>
+                TP: <input type="number" id="rc-tp" min="0" max="20" step="0.1">
+                Exam: <input type="number" id="rc-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>FBD ( 2)</label>
+                TD: <input type="number" id="fbd-td" min="0" max="20" step="0.1">
+                TP: <input type="number" id="fbd-tp" min="0" max="20" step="0.1">
+                Exam: <input type="number" id="fbd-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>BD ( 2)</label>
+                TP: <input type="number" id="bd-tp" min="0" max="20" step="0.1">
+                Exam: <input type="number" id="bd-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>ENG ( 1)</label>
+                Exam: <input type="number" id="eng-exam" min="0" max="20" step="0.1">
+            </div>
+            <div class="class">
+                <label>ENT ( 1)</label>
+                Exam: <input type="number" id="ent-exam" min="0" max="20" step="0.1">
+            </div>
+            <!-- Submit Button -->
+            <button type="button" onclick="calculate()">Calculate</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculate() {
+            const classes = [
+                { name: "IFD", tp: 50, exam: 50, importance: 3 },
+                { name: "SD", td: 25, tp: 25, exam: 50, importance: 3 },
+                { name: "RC", tp: 33, exam: 67, importance: 3 },
+                { name: "FBD", td: 25, tp: 25, exam: 50, importance: 2 },
+                { name: "BD", tp: 50, exam: 50, importance: 2 },
+                { name: "ENG", exam: 100, importance: 1 },
+                { name: "ENT", exam: 100, importance: 1 }
+            ];
+
+            let total = 0, totalImportance = 0;
+
+            classes.forEach(cls => {
+                const tp = parseFloat(document.getElementById(`${cls.name.toLowerCase()}-tp`)?.value || 0);
+                const td = parseFloat(document.getElementById(`${cls.name.toLowerCase()}-td`)?.value || 0);
+                const exam = parseFloat(document.getElementById(`${cls.name.toLowerCase()}-exam`)?.value || 0);
+
+                const grade = ((cls.tp || 0) * tp + (cls.td || 0) * td + (cls.exam || 0) * exam) / 100;
+                total += grade * cls.importance;
+                totalImportance += cls.importance;
+            });
+
+            const finalGrade = (total / totalImportance).toFixed(2);
+            document.getElementById("result").innerText = `Your final semester grade is: ${finalGrade}`;
+        }
+    </script>
+</body>
+</html>
