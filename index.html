@@ -16,6 +16,7 @@
             text-align: center;
             margin: 20px 0;
             color: #4CAF50;
+            font-size: 1.8rem;
         }
         .container {
             max-width: 800px;
@@ -38,11 +39,18 @@
             display: block;
             margin-bottom: 10px;
             color: #555;
+            font-size: 1rem;
         }
-        input {
-            width: 70px;
+        .inputs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .inputs input {
+            flex: 1 1 120px;
+            max-width: 120px;
             padding: 8px;
-            margin-right: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
@@ -72,8 +80,12 @@
             color: #4CAF50;
         }
         @media (max-width: 600px) {
-            input {
-                width: 50px;
+            h1 {
+                font-size: 1.5rem;
+            }
+            .inputs input {
+                flex: 1 1 100px;
+                max-width: 100%;
             }
             button {
                 font-size: 14px;
@@ -87,39 +99,53 @@
         <form id="calculator">
             <!-- Class Inputs -->
             <div class="class">
-                <label>IFD ( 3)</label>
-                TP: <input type="number" id="ifd-tp" min="0" max="20" step="0.1">
-                Exam: <input type="number" id="ifd-exam" min="0" max="20" step="0.1">
+                <label>IFD (Importance: 3)</label>
+                <div class="inputs">
+                    TP: <input type="number" id="ifd-tp" min="0" max="20" step="0.1">
+                    Exam: <input type="number" id="ifd-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>SD ( 3)</label>
-                TD: <input type="number" id="sd-td" min="0" max="20" step="0.1">
-                TP: <input type="number" id="sd-tp" min="0" max="20" step="0.1">
-                Exam: <input type="number" id="sd-exam" min="0" max="20" step="0.1">
+                <label>SD (Importance: 3)</label>
+                <div class="inputs">
+                    TD: <input type="number" id="sd-td" min="0" max="20" step="0.1">
+                    TP: <input type="number" id="sd-tp" min="0" max="20" step="0.1">
+                    Exam: <input type="number" id="sd-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>RC ( 3)</label>
-                TP: <input type="number" id="rc-tp" min="0" max="20" step="0.1">
-                Exam: <input type="number" id="rc-exam" min="0" max="20" step="0.1">
+                <label>RC (Importance: 3)</label>
+                <div class="inputs">
+                    TP: <input type="number" id="rc-tp" min="0" max="20" step="0.1">
+                    Exam: <input type="number" id="rc-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>FBD ( 2)</label>
-                TD: <input type="number" id="fbd-td" min="0" max="20" step="0.1">
-                TP: <input type="number" id="fbd-tp" min="0" max="20" step="0.1">
-                Exam: <input type="number" id="fbd-exam" min="0" max="20" step="0.1">
+                <label>FBD (Importance: 2)</label>
+                <div class="inputs">
+                    TD: <input type="number" id="fbd-td" min="0" max="20" step="0.1">
+                    TP: <input type="number" id="fbd-tp" min="0" max="20" step="0.1">
+                    Exam: <input type="number" id="fbd-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>BD ( 2)</label>
-                TP: <input type="number" id="bd-tp" min="0" max="20" step="0.1">
-                Exam: <input type="number" id="bd-exam" min="0" max="20" step="0.1">
+                <label>BD (Importance: 2)</label>
+                <div class="inputs">
+                    TP: <input type="number" id="bd-tp" min="0" max="20" step="0.1">
+                    Exam: <input type="number" id="bd-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>ENG ( 1)</label>
-                Exam: <input type="number" id="eng-exam" min="0" max="20" step="0.1">
+                <label>ENG (Importance: 1)</label>
+                <div class="inputs">
+                    Exam: <input type="number" id="eng-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <div class="class">
-                <label>ENT ( 1)</label>
-                Exam: <input type="number" id="ent-exam" min="0" max="20" step="0.1">
+                <label>ENT (Importance: 1)</label>
+                <div class="inputs">
+                    Exam: <input type="number" id="ent-exam" min="0" max="20" step="0.1">
+                </div>
             </div>
             <!-- Submit Button -->
             <button type="button" onclick="calculate()">Calculate</button>
@@ -157,3 +183,4 @@
     </script>
 </body>
 </html>
+
